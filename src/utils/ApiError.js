@@ -1,4 +1,5 @@
-// custom error handling
+// Custom error class to handle API errors
+
 class ApiError extends Error {
   constructor(
     statusCode,

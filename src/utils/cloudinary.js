@@ -11,7 +11,8 @@ cloudinary.config({
 // Function to upload image to Cloudinary
 const uploadOnCloudinary = async (localFilePath) => {
   try {
-    if (!localFilePath) return null;
+    // checks if the path exists as a string
+    if (!localFilePath) return null;   
 
     // Upload the file to Cloudinary
     const uploadResult = await cloudinary.uploader.upload(localFilePath, {
@@ -19,11 +20,12 @@ const uploadOnCloudinary = async (localFilePath) => {
     });
 
     console.log("File uploaded to Cloudinary:", uploadResult.url);
+    //console.log(uploadResult)
 
-    // Delete local file after upload
-    // if (fs.existsSync(localFilePath)) {
-    //   fs.unlinkSync(localFilePath);
-    // }
+    //Delete local file after upload
+    if (fs.existsSync(localFilePath)) {   //  checks if the file exists on the filesystem
+      fs.unlinkSync(localFilePath);
+    }
 
     return uploadResult;
 
